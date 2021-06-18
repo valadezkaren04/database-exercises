@@ -1,12 +1,12 @@
 USE codeup_test_db;
 
 INSERT INTO albums (artist, name, release_date, sales, genre)
-    VALUES ('Michael Jackson', 'Thriller', 1982, 47.3, 'Pop, post-disco, funk, rock'),
+    VALUES ('Michael Jackson', 'Thriller', 1982, 47.3, 'Pop, post-disco'),
            ('AC/DC', 'Back in Black', 1980, 29.4, 'Hard rock'),
-           ('Meat Loaf', 'Bat Out of Hell', 1977, 21.7, 'Hard rock, glam rock, progressive rock'),
+           ('Meat Loaf', 'Bat Out of Hell', 1977, 21.7, 'Hard rock, glam rock'),
            ('Pink Floyd', 'The Dark Side of the Moon', 1977, 24.4, 'Progressive rock'),
            ('Whitney Houston', 'The Bodyguard', 1992, 32.4, 'R&B, soul, pop, soundtrack'),
-           ('Eagles', 'Their Greatest Hits (1971-1975)', 1976, 41.2, 'Country rock, soft rock, folk rock'),
+           ('Eagles', 'Their Greatest Hits (1971-1975)', 1976, 41.2, 'Country rock, soft rock'),
            ('Bee Gees', 'Saturday Night Fever', 1977, 21.6, 'Disco'),
            ('Fleetwood Mac', 'Rumours', 1977, 27.9, 'Soft rock'),
            ('Shania Twain', 'Come On Over', 1997, 29.6, 'Country, pop'),

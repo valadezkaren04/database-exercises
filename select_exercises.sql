@@ -19,7 +19,7 @@ USE codeup_test_db;
  SELECT 'The genre for Nevermind' AS 'Nirvana album';
  SELECT genre FROM albums WHERE name = 'Nevermind'; /* gets the genre for album Nevermind */
 
- SELECT 'Albums released in the 90s' AS '90s albums';
+ SELECT 'Albums released in the 90''s' AS '90''s albums';
  SELECT * FROM albums WHERE release_date BETWEEN 1990 AND 1999; /* gets all the albums that were released in the 1990's */
 
  SELECT 'Less than 20 mil certified sales' AS 'Certified Sales';
