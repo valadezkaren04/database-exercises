@@ -20,3 +20,16 @@ WHERE emp_no < 20000
 
 # this is the old way oof doing it
 SELECT * FROM salaries WHERE NOT salary BETWEEN 50000 AND 100000;
+
+# in the past, this did not work, but now it does.
+SELECT * FROM salaries WHERE salary NOT BETWEEN 50000 AND 100000;
+
+SELECT birth_date FROM employees
+WHERE NOT birth_date LIKE '195%';
+
+# same as ^^ but this is a little more clear:
+SELECT birth_date FROM employees
+WHERE birth_date NOT LIKE '195%';
+
+SELECT birth_date, hire_date FROM employees
+WHERE birth_date NOT LIKE '195%'
