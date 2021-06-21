@@ -33,3 +33,11 @@ WHERE birth_date NOT LIKE '195%';
 
 SELECT birth_date, hire_date FROM employees
 WHERE birth_date NOT LIKE '195%'
+
+# this will not select all employees born in Jan. 1963:
+SELECT * FROM employees WHERE birth_date LIKE '1963-1%';
+
+# this will:
+SELECT * FROM employees WHERE birth_date LIKE '1963-01%';
+
+SELECT * FROM employees WHERE birth_date LIKE '1963-01%' ORDER BY birth_date;
