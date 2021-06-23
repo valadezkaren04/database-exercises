@@ -15,12 +15,7 @@ ALTER TABLE salaries ADD INDEX salary_index (salary);
 
 USE codeup_test_db;
 
-CREATE TABLE quotes2 (
-    id INT NOT NULL AUTO_INCREMENT,
-    content VARCHAR(500) NOT NULL,
-    author VARCHAR(50) NOT NULL,
-    PRIMARY KEY (id)
-);
+
 
 ALTER TABLE quotes2 ADD UNIQUE (content);
 
