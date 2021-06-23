@@ -39,3 +39,14 @@ SELECT gender, COUNT(*) FROM employees
 WHERE first_name IN ('Irena', 'Vidya', 'Maya')
 GROUP BY gender;
 
+# ALIASES
+
+# rename the column
+SELECT MIN(DATEDIFF(hire_date, birth_date)/365) AS 'youngest age at hire' FROM employees;
+
+SELECT MIN(DATEDIFF(hire_date, birth_date)/365) AS youngest_age_at_hire FROM employees;
+
+SELECT CONCAT(first_name, ' ', last_name) AS 'Age when hired',
+DATEDIFF(hire_date, birth_date)/365 FROM employees
+ORDER BY DATEDIFF(hire_date, birth_date)/365 DESC
+LIMIT 50;
