@@ -39,7 +39,11 @@ SELECT p.first_name, a.name FROM persons p JOIN albums a ON p.album_id = a.id;
 SELECT p.first_name, a.name FROM albums a LEFT JOIN persons p on a.id = p.album_id;
 
 # gives every single row from the right side
+SELECT p.first_name, a.name FROM persons p RIGHT JOIN albums a on p.album_id = a.id;
 
+SELECT p.first_name, a.name FROM albums a RIGHT JOIN persons p on a.id = p.album_id;
+
+SELECT p.first_name, a.name FROM persons p LEFT JOIN albums a on a.id = p.album_id;
 
 # junction tables // associative tables // join tables
 
