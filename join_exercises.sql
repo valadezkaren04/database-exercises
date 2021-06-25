@@ -112,3 +112,56 @@ FROM employees e
          JOIN departments d on d.dept_no = de.dept_no
          JOIN dept_manager dm on d.dept_no = dm.dept_no
 LIMIT 20;
+
+# Now I just have to tell the server to line up the manager's name, based on an employee number match
+# But this time I am not matching employee to dept_emp
+# No, this time I want to match the manager's identity, which I just got, to their name
+# that means Joining dept_manager to employees
+# the server will get confused if I use the same alias for employees
+# The server already has a representation of employees stored in the alias e, and that
+# representation is linked to the employee in the first column
+# we need a new representation linked to the manager's employee number
+# so we create a new alias, e2
+# we delete the employee number from our output and we try the new query
+
+SELECT CONCAT(e.last_name, ' ', e.first_name) AS employee,
+       dept_name AS Department,
+       CONCAT(e2.last_name, ' ', e2.first_name) AS Manager
+FROM employees e
+         JOIN dept_emp de ON e.emp_no = de.emp_no
+         JOIN departments d ON de.dept_no = d.dept_no
+         JOIN dept_manager dm ON d.dept_no = dm.dept_no
+         JOIN employees e2 ON e2.emp_no = dm.emp_no;
+
+# That's the right output, but 897570 rows ...
+# I forgot to limit the results to only current employees
+
+# I get duplicate results when I only limit to current employees,
+# ... I investigate by using a query to one employee last name
+
+SELECT CONCAT(e.last_name, ' ', e.first_name) AS employee,
+       dept_name AS Department,
+       CONCAT(e2.last_name, ' ', e2.first_name) AS Manager
+FROM employees e
+         JOIN dept_emp de ON e.emp_no = de.emp_no
+         JOIN departments d ON de.dept_no = d.dept_no
+         JOIN dept_manager dm ON d.dept_no = dm.dept_no
+         JOIN employees e2 ON e2.emp_no = dm.emp_no
+WHERE de.to_date LIKE '9%' AND e.last_name = 'Sichman';
+
+# Ahhhh, now I see. Yes, the server is querying for the
+# name of the manager of that department ... but the
+# dept_manager table contains every person who has ever managed that department
+# I need to limit my results to just the current person who manages the department
+
+SELECT CONCAT(e.last_name, ' ', e.first_name) AS employee,
+       dept_name AS Department,
+       CONCAT(e2.last_name, ' ', e2.first_name) AS Manager
+FROM employees e
+         JOIN dept_emp de ON e.emp_no = de.emp_no
+         JOIN departments d ON de.dept_no = d.dept_no
+         JOIN dept_manager dm ON d.dept_no = dm.dept_no
+         JOIN employees e2 ON e2.emp_no = dm.emp_no
+WHERE de.to_date LIKE '9%' AND dm.to_date LIKE '9%';
+
+# And I see the longed-for confirmation: 240124 rows in set (0.85 sec)
