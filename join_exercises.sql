@@ -35,3 +35,13 @@ GROUP BY title;
 # But I notice that the department managers table does not have the managers' names.
 # Managers' names are in the employees table. Managers' identities, identified by employee number,
 # are in the department managers table. Therefore I need to include the employees table in my join chain
+# So I start out with the basic join chain, showing the columns I need
+# First version
+
+SELECT dept_name AS 'Department Name',
+       CONCAT(first_name, ' ', last_name) AS 'Department Manager',
+       salary AS Salary
+FROM departments d
+         JOIN dept_manager dm ON d.dept_no = dm.dept_no
+         JOIN employees e ON dm.emp_no = e.emp_no
+         JOIN salaries s ON e.emp_no = s.emp_no;
