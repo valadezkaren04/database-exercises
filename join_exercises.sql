@@ -62,3 +62,32 @@ WHERE s.to_date = '9999-01-01'
 AND dm.to_date = '9999-01-01'
 ORDER BY Salary DESC;
 
+# BONUS
+# Find the names of all current employees, their department name, and their current manager's name
+# The key here is to line up the employees table twice, but using a different condition on each time
+# each time you give the MySQL database server a condition for joining, the server decides that it will
+# line up the rows you have requested every time it finds that match
+
+# The whole time I'm working out the solution I am using LIMIT 20, otherwise I'm wasting time and CPU
+# resources. I only lift the limit near the end
+
+# I know I need the concatenated last name and first name of every current employee
+# that's from the employees table
+# I need the department name - that's in the departments table
+# and I need the manager's name - that's in the employees table again - But how?
+
+# think of joins as creating a great big temporary table that only lives while the query is being made
+# so I want to line up an employee's name with the department they are working in. Well, the department name
+# is in the departments table, and the number representing the department every employee works in is in the
+# department employees table
+
+# so I need a table that looks like
+# employees.last_name | employees.first_name | employees.emp_no | dept_emp.emp_no | dept_emp.dept_no | departments.dept_name
+
+# armed with this knowledge I can set up my first join chain
+SELECT CONCAT(e.last_name, ' ', e.first_name) AS employee,
+       d.dept_name AS Department
+FROM employees e
+         JOIN dept_emp de ON e.emp_no = de.emp_no
+         JOIN departments d on d.dept_no = de.dept_no
+LIMIT 20;
