@@ -45,3 +45,19 @@ FROM departments d
          JOIN dept_manager dm ON d.dept_no = dm.dept_no
          JOIN employees e ON dm.emp_no = e.emp_no
          JOIN salaries s ON e.emp_no = s.emp_no;
+
+# The problem here is, I get EVERY salary the department managers have ever had
+# in their entire careers at The Company
+# in addition, this includes people who used to be managers but no longer are
+# so I add a WHERE clause restricting the results to current salaries and managers
+# for good measure I add an ORDER BY DESC even though it wasn't strictly required
+
+SELECT dept_name AS 'Department Name',
+       CONCAT(first_name, ' ', last_name) AS 'Department Manager',
+       salary AS Salary FROM departments d
+                                 JOIN dept_manager dm ON d.dept_no = dm.dept_no
+                                 JOIN employees e ON dm.emp_no = e.emp_no
+                                 JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+  AND dm.to_date = '9999-01-01'
+ORDER BY Salary DESC;
