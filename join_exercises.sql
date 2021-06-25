@@ -91,3 +91,24 @@ FROM employees e
          JOIN dept_emp de ON e.emp_no = de.emp_no
          JOIN departments d on d.dept_no = de.dept_no
 LIMIT 20;
+
+# I've successfully built the first two thirds of the query
+# Now I just need to tell the MySQL server "when you find a match between that department's manager
+# and the department manager's name, line up the rows that have the matching value"
+# Think of a JOIN clause as telling the server how to join up rows between columns from different tables
+# you say, hey server, whenever a specified condition is true, like some column's value in one table
+# matches a value in a column in another table, go ahead and line up the rows that have the matching value
+
+# so we know each department, identified by number, has a manager, identified by the dept_no of the
+# department they manage as well as by their employee number. So I have to link departments to dept_manager
+# using dept_no match as the condition
+# to test this, I'm going to give the manager's employee number as output
+
+SELECT CONCAT(e.last_name, ' ', e.first_name) AS employee,
+       d.dept_name AS Department,
+       dm.emp_no AS 'Manager Employee Number'
+FROM employees e
+         JOIN dept_emp de ON e.emp_no = de.emp_no
+         JOIN departments d on d.dept_no = de.dept_no
+         JOIN dept_manager dm on d.dept_no = dm.dept_no
+LIMIT 20;
