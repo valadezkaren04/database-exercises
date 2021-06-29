@@ -87,3 +87,7 @@ INSERT INTO quote_topic(quote_id, topic_id)
 VALUES (1, 2), (1, 3), (2, 4), (3, 1),
        (3, 2), (3, 3), (3, 4), (4, 2), (5, 1);
 
+SELECT first_name, last_name, content, t.name FROM quotes
+                                                       JOIN quote_topic qt ON quotes.id = qt.quote_id
+                                                       JOIN topics t ON qt.topic_id = t.id
+                                                       JOIN authors a ON quotes.author_id = a.id;
