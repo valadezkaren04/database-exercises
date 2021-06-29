@@ -76,11 +76,7 @@ INSERT INTO topics(name) VALUES
 
 SELECT * FROM topics;
 
-CREATE TABLE quote_topic (
-                             quote_id INT UNSIGNED NOT NULL,
-                             topic_id INT UNSIGNED NOT NULL,
-                             FOREIGN KEY (quote_id) REFERENCES quotes(id),
-                             FOREIGN KEY (topic_id) REFERENCES topics(id)
+                         FOREIGN KEY (topic_id) REFERENCES topics(id)
 );
 
 INSERT INTO quote_topic(quote_id, topic_id)
