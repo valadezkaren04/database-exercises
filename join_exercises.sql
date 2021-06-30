@@ -124,14 +124,7 @@ LIMIT 20;
 # so we create a new alias, e2
 # we delete the employee number from our output and we try the new query
 
-SELECT CONCAT(e.last_name, ' ', e.first_name) AS employee,
-       dept_name AS Department,
-       CONCAT(e2.last_name, ' ', e2.first_name) AS Manager
-FROM employees e
-         JOIN dept_emp de ON e.emp_no = de.emp_no
-         JOIN departments d ON de.dept_no = d.dept_no
-         JOIN dept_manager dm ON d.dept_no = dm.dept_no
-         JOIN employees e2 ON e2.emp_no = dm.emp_no;
+
 
 # That's the right output, but 897570 rows ...
 # I forgot to limit the results to only current employees
