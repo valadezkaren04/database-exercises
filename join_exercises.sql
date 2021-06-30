@@ -113,16 +113,7 @@ FROM employees e
          JOIN dept_manager dm on d.dept_no = dm.dept_no
 LIMIT 20;
 
-# Now I just have to tell the server to line up the manager's name, based on an employee number match
-# But this time I am not matching employee to dept_emp
-# No, this time I want to match the manager's identity, which I just got, to their name
-# that means Joining dept_manager to employees
-# the server will get confused if I use the same alias for employees
-# The server already has a representation of employees stored in the alias e, and that
-# representation is linked to the employee in the first column
-# we need a new representation linked to the manager's employee number
-# so we create a new alias, e2
-# we delete the employee number from our output and we try the new query
+
 
 SELECT CONCAT(e.last_name, ' ', e.first_name) AS employee,
        dept_name AS Department,
