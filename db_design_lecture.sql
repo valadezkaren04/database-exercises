@@ -68,7 +68,11 @@ CREATE TABLE topics (
                         PRIMARY KEY (id)
 );
 
-
+INSERT INTO topics(name) VALUES
+('Space and Time'),
+('Humor'),
+('Office Life'),
+('Hitchiker''s Guide to the Galaxy');
 
 SELECT * FROM topics;
 
