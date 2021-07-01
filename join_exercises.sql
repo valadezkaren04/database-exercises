@@ -149,10 +149,7 @@ FROM employees e
          JOIN employees e2 ON e2.emp_no = dm.emp_no
 WHERE de.to_date LIKE '9%' AND e.last_name = 'Sichman';
 
-# Ahhhh, now I see. Yes, the server is querying for the
-# name of the manager of that department ... but the
-# dept_manager table contains every person who has ever managed that department
-# I need to limit my results to just the current person who manages the department
+
 
 SELECT CONCAT(e.last_name, ' ', e.first_name) AS employee,
        dept_name AS Department,
