@@ -154,14 +154,6 @@ WHERE de.to_date LIKE '9%' AND e.last_name = 'Sichman';
 # dept_manager table contains every person who has ever managed that department
 # I need to limit my results to just the current person who manages the department
 
-SELECT CONCAT(e.last_name, ' ', e.first_name) AS employee,
-       dept_name AS Department,
-       CONCAT(e2.last_name, ' ', e2.first_name) AS Manager
-FROM employees e
-         JOIN dept_emp de ON e.emp_no = de.emp_no
-         JOIN departments d ON de.dept_no = d.dept_no
-         JOIN dept_manager dm ON d.dept_no = dm.dept_no
-         JOIN employees e2 ON e2.emp_no = dm.emp_no
-WHERE de.to_date LIKE '9%' AND dm.to_date LIKE '9%';
+
 
 # And I see the longed-for confirmation: 240124 rows in set (0.85 sec)
