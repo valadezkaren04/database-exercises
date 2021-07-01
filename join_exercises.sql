@@ -133,11 +133,7 @@ FROM employees e
          JOIN dept_manager dm ON d.dept_no = dm.dept_no
          JOIN employees e2 ON e2.emp_no = dm.emp_no;
 
-# That's the right output, but 897570 rows ...
-# I forgot to limit the results to only current employees
 
-# I get duplicate results when I only limit to current employees,
-# ... I investigate by using a query to one employee last name
 
 SELECT CONCAT(e.last_name, ' ', e.first_name) AS employee,
        dept_name AS Department,
